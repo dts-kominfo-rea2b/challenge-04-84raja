@@ -8,8 +8,19 @@ const dates = [
 ];
 
 // TODO: Buatlah fungsi createDate
-const createDate = null;
+const createDate = (dates, search = null) => {
+  let dateEpoch = [];
 
+  for (const index in dates) {
+    dateEpoch.push(Date.parse(dates[index]).toString().slice(0, -3));
+  }
+
+  if (search == null || search > dates.length) {
+    return dateEpoch.sort().join("-");
+  } else if (search > 0 && search <= dates.length) {
+    return dateEpoch[search];
+  }
+};
 // ! JANGAN DIMODIFIKASI
 (() => {
   // IIFE
@@ -18,7 +29,7 @@ const createDate = null;
   console.log(createDate?.(dates));
 
   // '1614841200' (dalam string)
-  console.log(createDate?.(dates, 2));
+  console.log(createDate?.(dates, -6));
 })();
 
 module.exports = {
